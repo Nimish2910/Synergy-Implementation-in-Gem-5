@@ -1,5 +1,5 @@
 # ECEN 5598 Final project :Synergy-Implementation-in-Gem-5
-
+## Team members: Nimish Sabnis, Disha Gundecha, Eli Wall
 Abstract—Modern memory systems must account
 for both reliability and security, especially in high-
 performance and cloud environments where data integrity
