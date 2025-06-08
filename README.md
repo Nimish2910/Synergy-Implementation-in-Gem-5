@@ -124,10 +124,17 @@ Next, let’s modify the `handleRequest` and `handleResponse` in our `secure_mem
 
 Finally, let's modify the `handleResponse` call to ensure that all metadata are verified. We authenticate against the root of the tree because it is stored on-chip. Thus, if we receive the response for the root back from the memory device we can assume that our simulated secure memory can authenticate it against the stored value and use that value to verify its children. When some tree node other than the root is returned from memory, we store it in a temporary buffer for `pending_untrusted_packets` for later authentication. When the HMAC fetch returns from memory, we use that value to mark the data as authenticated.
 
-
+## Acknowledgment
+We would like to sincerely thank our professor Tamara
+Lehman and the Teaching Assistant Alex Mueller for all
+their support. We also would like to acknowledge the Gem5 open-source communities for providing
+the base simulation infrastructure and documentation,
+which significantly accelerated our development process.
 ## References:
+- G. Saileshwar, P. J. Nair, P. Ramrakhyani, W. Elsasser and M. K. Qureshi, "SYNERGY: Rethinking Secure-Memory Design for Error-Correcting Memories," 2018 IEEE International Symposium on High Performance Computer Architecture (HPCA), Vienna, Austria, 2018, pp. 454-465, doi: 10.1109/HPCA.2018.00046. keywords: {Encryption;Metadata;Memory management;Reliability engineering;Error correction codes;Memory-Security;Reliability;ECC-DIMM},
 - https://github.com/samueltphd/SecureMemoryTutorial/tree/b6feae273a708d5dc9d6e8b8de2be8bcfb1ab1a4
-- The gem5 Simulator. Nathan Binkert, Bradford Beckmann, Gabriel Black, Steven K. Reinhardt, Ali Saidi, Arkaprava Basu, Joel Hestness, Derek R. Hower, Tushar Krishna, Somayeh Sardashti, Rathijit Sen, Korey Sewell, Muhammad Shoaib, Nilay Vaish, Mark D. Hill, and David A. Wood. ACM SIGARCH Computer Architecture News, May 2011. [ doi: 10.1145/2024716.2024718 ] 
+- The gem5 Simulator. Nathan Binkert, Bradford Beckmann, Gabriel Black, Steven K. Reinhardt, Ali Saidi, Arkaprava Basu, Joel Hestness, Derek R. Hower, Tushar Krishna, Somayeh Sardashti, Rathijit Sen, Korey Sewell, Muhammad Shoaib, Nilay Vaish, Mark D. Hill, and David A. Wood. ACM SIGARCH Computer Architecture News, May 2011. [ doi: 10.1145/2024716.2024718 ]
+  
 
 
 
