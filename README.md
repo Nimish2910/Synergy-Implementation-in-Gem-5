@@ -101,7 +101,7 @@ Next, we need to be able to compile this new component into the simulator. We do
 
 ## Linking custom object into simulation
 
-Let’s test that our newly created back-end object and front-end component can be linked into the simulator. Start by creating a new run script that uses the `SecureSimpleMemory` component that we declared in the prior step. We can do this by calling `from gem5.components.memory.secure import SecureSimpleMemory` and replacing the declaration of the memory device with `SecureSimpleMemory`.
+Now Test that our newly created back-end object and front-end component can be linked into the simulator. Start by creating a new run script that uses the `SecureSimpleMemory` component that we declared in the prior step. We can do this by calling `from gem5.components.memory.secure import SecureSimpleMemory` and replacing the declaration of the memory device with `SecureSimpleMemory`.
 
   
 
@@ -124,21 +124,6 @@ Next, let’s modify the `handleRequest` and `handleResponse` in our `secure_mem
 
 Finally, let's modify the `handleResponse` call to ensure that all metadata are verified. We authenticate against the root of the tree because it is stored on-chip. Thus, if we receive the response for the root back from the memory device we can assume that our simulated secure memory can authenticate it against the stored value and use that value to verify its children. When some tree node other than the root is returned from memory, we store it in a temporary buffer for `pending_untrusted_packets` for later authentication. When the HMAC fetch returns from memory, we use that value to mark the data as authenticated.
 
-# Next Steps
-
-Here are some natural next steps to follow up from this tutorial!
-
-## Adding a metadata cache
-
-The secure memory protocol typically takes advantage of a cache for metadata. This can be a single cache for all security metadata or one per metadata type. Furthermore, if some metadata fetch hits in the cache, its value is trusted. Try modifying the current implementation to incorporate a metadata cache! Note, this will entail modifying the protocol in the back-end source and modifying the configuration of the `SecureMemorySystem` component.
-
-## Implementing metadata accesses/updates
-
-For simplicity, we didn't implement the actual protocol of maintaining encryption counters, HMACs, and up-to-date tree values. Try modifying the implementation to include this! Note, this will entail updating the `security_metadata` field in `abstract_memory.{cc,hh}` to have space for these addresses.
-
-## Adding additional stats
-
-There is more to know about secure memory! Try updating the stats counters to see if we can glean further takeaways about how secure memory operates under various workloads.
 
 ## References:
 - https://github.com/samueltphd/SecureMemoryTutorial/tree/b6feae273a708d5dc9d6e8b8de2be8bcfb1ab1a4
