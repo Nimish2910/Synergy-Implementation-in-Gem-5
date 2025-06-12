@@ -1,4 +1,4 @@
-// secure_memory.cc (SYNERGY-style modification)
+
 
 #include "mem/secmem-tutorial/secure_memory.hh"
 #include <cstdint>
